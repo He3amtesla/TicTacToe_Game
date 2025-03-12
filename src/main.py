@@ -2,10 +2,19 @@ import random
 
 class TicTacToe():
     def __init__(self):
+        """
+        Initialize the TicTacToe game with an empty board and random first player.
+        
+        The board is represented as a list of 10 elements, with index 0 being ignored
+        for easier mapping of positions 1-9 to the board.
+        """
         self.board = [' '] * 10 #index 0th is ignore
         self.user_turn = self.get_random_first_player()
         
-    def get_random_first_player(self):
+    def get_random_first_player(self) -> chr:
+        """
+        Randomly select which player goes first.
+        """
         return random.choice(['O', 'X'])
         
     def show_board(self):
@@ -17,17 +26,18 @@ class TicTacToe():
         print((self.board[7] if self.board[7] != ' ' else '7') +'  |  '+ (self.board[8] if self.board[8] != ' ' else '8') +'  |  '+ (self.board[9] if self.board[9] != ' ' else '9'))
         print("\n")
         
-    def swap_player_turn(self):
+    def swap_player_turn(self) -> chr:
         self.user_turn = 'O' if self.user_turn == 'X' else 'X'
         return self.user_turn
     
-    def is_board_filled(self):
+    def is_board_filled(self) -> bool:
         return ' ' not in self.board[1: ]
     
-    def fix_spot(self, cell, player):
+    def fix_spot(self, cell: int, player: chr) -> None:
         self.board[cell] = player
         
-    def has_player_won (self, player):
+    def has_player_won (self, player: chr) -> bool:
+
         win_combinations = [
             [1, 2, 3], [4, 5, 6], [7, 8, 9], #rows or the same Record
             [1, 4, 7], [2, 5, 8], [3, 6, 9], #colums or the same Fields
@@ -41,6 +51,12 @@ class TicTacToe():
         return False
     
     def start(self):
+        """
+        Start and run the Tic-Tac-Toe game.
+        
+        This method manages the game loop, handling player input, updating the game state,
+        checking for win/draw conditions, and switching player turns.
+        """
         while True:
             self.show_board()
             print(f"player {self.user_turn} turn")
@@ -58,10 +74,11 @@ class TicTacToe():
                     print("Draw\n")
                     break
                 
+                self.swap_player_turn()
+
             else:
                 print("invalid cell number؛ try again")
                     
-                self.swap_player_turn()
      
                 
 if __name__ == "__main__":
