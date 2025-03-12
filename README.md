@@ -17,9 +17,9 @@ This project is a text-based version of Tic-Tac-Toe that allows two players to t
 ## How to Play
 
 1. Run the game using Python:
-   ```
-   python tictactoe.py
-   ```
+   `
+   python src/main.py
+   `
 
 2. The game will display the board with numbered positions (1-9) and randomly select whether X or O goes first.
 
